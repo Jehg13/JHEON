@@ -19,9 +19,7 @@ export default function ProjectGrid({ onSelect }: ProjectGridProps) {
         <div>
           <SectionLabel number="03">OTROS PROYECTOS</SectionLabel>
           <h2>
-            MÁS
-            <br />
-            <span>PROYECTOS.</span>
+            MÁS <span>PROYECTOS.</span>
           </h2>
         </div>
         <p className="eyebrow">

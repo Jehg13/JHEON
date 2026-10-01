@@ -6,11 +6,13 @@ import ProjectArtwork from "./ProjectArtwork";
 type ProjectDialogProps = {
   project: Project | null;
   onClose: () => void;
+  onViewDetails: (project: Project) => void;
 };
 
 export default function ProjectDialog({
   project,
   onClose,
+  onViewDetails,
 }: ProjectDialogProps) {
   const shouldReduceMotion = useReducedMotion();
   const dialogRef = useRef<HTMLElement>(null);
@@ -142,6 +144,13 @@ export default function ProjectDialog({
                   </div>
                 </section>
               )}
+              <button
+                className="dialog-details-button eyebrow"
+                type="button"
+                onClick={() => onViewDetails(project)}
+              >
+                VER INFORMACIÓN COMPLETA <span aria-hidden="true">↗</span>
+              </button>
               {(project.demo || project.github || project.apk) && (
                 <div className="dialog-links">
                   {project.demo && (

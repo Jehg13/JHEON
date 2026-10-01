@@ -15,15 +15,23 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.06 }}
         >
-          PORTAFOLIO DE DESARROLLO DIGITAL
+          PORTAFOLIO DIGITAL
         </motion.div>
         <motion.h1
           initial={reduceMotion ? false : { opacity: 0, y: 30, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
         >
-          JHEON<span>.</span>
+          JHEON
         </motion.h1>
+        <motion.p
+          className="hero-owner eyebrow"
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.22 }}
+        >
+          JESUS EFREN HINOJOSA GUERRA
+        </motion.p>
         <motion.div
           className="hero-title-support"
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
@@ -31,11 +39,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <span className="hero-title-rule" />
-          <p>
-            DESARROLLADOR
-            <br />
-            DE SOFTWARE
-          </p>
+          <p>DESARROLLADOR DE SOFTWARE</p>
         </motion.div>
         <motion.p
           className="hero-caption eyebrow"
@@ -63,6 +67,17 @@ export default function Hero() {
         <div className="scene-axis scene-axis--bottom eyebrow">SISTEMA ACTIVO</div>
         <span className="scene-cross scene-cross--one" />
         <span className="scene-cross scene-cross--two" />
+        <div className="scene-readout" aria-hidden="true">
+          <span className="scene-readout-label eyebrow">JHEON / PORTAFOLIO</span>
+          <span className="scene-readout-title">IDEAS EN<br />MOVIMIENTO</span>
+          <span className="scene-readout-bars">
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+        </div>
       </div>
       <div className="hero-footer eyebrow">
         <span>DISEÑO — INGENIERÍA — DETALLE</span>

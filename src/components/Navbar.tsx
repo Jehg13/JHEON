@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 const navigation = [
   { label: "INICIO", href: "#inicio" },
@@ -6,9 +6,26 @@ const navigation = [
   { label: "PROYECTOS", href: "#projects" },
 ];
 
-export default function Navbar() {
+type NavbarProps = {
+  isProjectDetail: boolean;
+  onNavigateFromDetail: (sectionId: string) => void;
+};
+
+export default function Navbar({
+  isProjectDetail,
+  onNavigateFromDetail,
+}: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
+
+  const handleNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    if (!isProjectDetail) return;
+    event.preventDefault();
+    onNavigateFromDetail(sectionId);
+  };
 
   useEffect(() => {
     let frame = 0;
@@ -25,6 +42,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (isProjectDetail) return;
     const sectionIds = navigation.map(({ href }) => href.slice(1));
     const sections = sectionIds
       .map((id) => document.getElementById(id))
@@ -42,7 +60,7 @@ export default function Navbar() {
     );
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [isProjectDetail]);
 
   return (
     <header className={`floating-header${scrolled ? " floating-header--scrolled" : ""}`}>
@@ -50,7 +68,12 @@ export default function Navbar() {
         className="floating-nav flex items-center justify-between"
         aria-label="Navegación principal"
       >
-        <a className="wordmark" href="#inicio" aria-label="JHEON, inicio">
+        <a
+          className="wordmark"
+          href="#inicio"
+          aria-label="JHEON, inicio"
+          onClick={(event) => handleNavigation(event, "inicio")}
+        >
           <span className="wordmark-emblem" aria-hidden="true">J</span>
           <span className="wordmark-name">
             JHEON<span className="wordmark-dot">.</span>
@@ -66,6 +89,7 @@ export default function Navbar() {
                 className={`floating-nav-link${active ? " is-active" : ""}`}
                 href={href}
                 key={sectionId}
+                onClick={(event) => handleNavigation(event, sectionId)}
               >
                 <span className="nav-link-label">{label}</span>
                 {active && (
